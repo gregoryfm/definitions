@@ -236,10 +236,12 @@ methods:
         Date.civil(2021, 9, 24)
       when 2022
         Date.civil(2022, 9, 23)
-      when 2023
-        Date.civil(2023, 9, 29)
-      when 2024
-        Date.civil(2024, 9, 27)
+      else
+        # Friday before AFL Grand Final typically falls on the last Friday in September
+        # Override when it falls on a different date
+        last_day = Date.civil(year, 9, -1)
+        last_friday = last_day - ((last_day.wday - 5) % 7)
+        last_friday
       end
   qld_queens_bday_october:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
